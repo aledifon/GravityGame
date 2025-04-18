@@ -6,12 +6,13 @@ public class GravityBody : MonoBehaviour
 {
 
     [SerializeField] protected GravityAttractor attractor = null;
-    [SerializeField] protected int grounded;
+    [SerializeField] protected bool isGrounded;
+    [SerializeField] protected int jumpCounter;
     
     protected Rigidbody rb;
 
     #region Unity API
-    void Awake()
+    protected virtual void Awake()
     {
         rb = GetComponent<Rigidbody>();   
         rb.useGravity = false;              // Disable the Unity gravity
@@ -19,7 +20,7 @@ public class GravityBody : MonoBehaviour
                                             // as we'll rotate the GO manually
     }
     
-    void FixedUpdate()
+    protected virtual void FixedUpdate()
     {
         if(attractor != null)
         {
@@ -31,13 +32,19 @@ public class GravityBody : MonoBehaviour
     #region Detect Ground
     private void OnCollisionEnter(Collision collision)
     {
-        if(collision.collider.CompareTag("Planet"))
-            grounded++;
+        if (collision.collider.CompareTag("Planet"))
+        {
+            isGrounded = true;
+            jumpCounter = 0;
+        }
+            
     }
     private void OnCollisionExit(Collision collision)
     {
         if (collision.collider.CompareTag("Planet"))
-            grounded--;
+        {
+            isGrounded = false;            
+        }            
     }
     #endregion
 }

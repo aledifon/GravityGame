@@ -409,13 +409,13 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 963194225}
   serializedVersion: 2
-  m_LocalRotation: {x: -0.09045808, y: 0.84027493, z: -0.14796934, w: -0.5136736}
-  m_LocalPosition: {x: 10.262175, y: 8.837032, z: 6.8340735}
+  m_LocalRotation: {x: 0.07362325, y: -0.91940176, z: 0.32572022, w: 0.20781365}
+  m_LocalPosition: {x: 2.29, y: 7.14, z: 8.29}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 0}
-  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+  m_LocalEulerAnglesHint: {x: 39.016, y: -154.527, z: 0}
 --- !u!1 &1175919330
 GameObject:
   m_ObjectHideFlags: 0
@@ -483,7 +483,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 4274285055804658, guid: 84493eaa65d75074ca2c6e2d8a90ff9a, type: 3}
       propertyPath: m_LocalPosition.z
-      value: 3.02
+      value: 1.76
       objectReference: {fileID: 0}
     - target: {fileID: 4274285055804658, guid: 84493eaa65d75074ca2c6e2d8a90ff9a, type: 3}
       propertyPath: m_LocalRotation.w
@@ -595,7 +595,11 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   attractor: {fileID: 1175919332}
-  grounded: 0
+  isGrounded: 0
+  jumpCounter: 0
+  maxSpeed: 30
+  force: 200
+  jumpSpeed: 6
 --- !u!1660057539 &9223372036854775807
 SceneRoots:
   m_ObjectHideFlags: 0

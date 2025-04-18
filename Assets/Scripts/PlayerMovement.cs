@@ -36,7 +36,8 @@ public class PlayerMovement : GravityBody
     {        
         InputPlayer();        
         JumpInput();
-        RotationVectors();
+        //RotationVectors();
+        Animating();
     }
     protected override void FixedUpdate()
     {
@@ -73,7 +74,8 @@ public class PlayerMovement : GravityBody
         }
     }
     private void Movement()
-    {        
+    {
+        Debug.Log("RB Velocity: " + rb.velocity.magnitude);
         if(rb.velocity.magnitude <= maxSpeed)
         {
             // Forward movement
@@ -95,10 +97,13 @@ public class PlayerMovement : GravityBody
             rb.velocity += (rb.transform.up * jumpSpeed);
         }
     }
-
+    private void Animating()
+    {
+        anim.SetFloat("Velocity",rb.velocity.magnitude);
+    }
     private void RotationVectors()
     {
-        Quaternion rot = Quaternion.Euler(0,25,0);
+        Quaternion rot = Quaternion.Euler(0, 25, 0);
         Vector3 d = rot * transform.forward;
 
         //// Draw the d vector
@@ -106,26 +111,12 @@ public class PlayerMovement : GravityBody
         //// Draw the foward vector
         //Debug.DrawLine(transform.position, transform.position + (transform.forward * 10), Color.blue);
     }
+    private void OnCollisionEnter(Collision collision)
+    {        
+        if(collision.gameObject.GetComponent<IActionable>() != null)
+        {
+            collision.gameObject.GetComponent<IActionable>().Action();
+        }
+    }
     #endregion
 }
-
-
-
-
-
-
-//private void FixedUpdate()
-//{
-//    //Vector3 posPlayer = new Vector3(rb.position.x,
-//    //                                rb.position.y,
-//    //                                vertical * maxSpeed * Time.deltaTime);
-
-//    //rb.MovePosition(Vector3.Lerp(rb.position, posPlayer, 0.1f));
-
-//    // Create a rotation around the Y-Axis of the Player
-//    //desiredYRotation = desiredYRotation +
-//    //                    horizontal * turnSpeed * Time.deltaTime;
-//    //rb.MoveRotation(Quaternion.Slerp(rb.rotation,));
-
-//    //rb.AddForce(posPlayer);
-//}
